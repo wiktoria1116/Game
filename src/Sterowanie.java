@@ -61,27 +61,27 @@ public class Sterowanie extends JFrame{
            
            
            
-           if (wsp[1]==20){
+             if (wsp[1]==20){
                powrot();
            }
            
-           if ((wsp[1]>=276 || wsp[1]<=510) && wsp[0]>=612){
+             if ((wsp[1]>=276 || wsp[1]<=510) && wsp[0]>=612){
             
             
-        }
-            if ((wsp[1]>=202 || wsp[1]<=278) && wsp[0]>=626){
+           }
+              if ((wsp[1]>=202 || wsp[1]<=278) && wsp[0]>=626){
             
-        }
+           }
             
              if (wsp[1]>=202  && wsp[0]>=675){
            
-        }
+           }
               if (wsp[1]>=202  && wsp[0]>=665){
             
-        }
+           }
             repaint();
             
-        }
+           }
           
      }
      
