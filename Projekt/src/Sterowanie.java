@@ -33,11 +33,13 @@ public class Sterowanie extends JFrame{
     private Menu        menu;
   
   
-    
+
 
   
  
     class Zadanie extends TimerTask{
+        
+        
 
         public void run()
         {
@@ -56,6 +58,8 @@ public class Sterowanie extends JFrame{
            wsp[0] = (wsp[0]>720)?720:wsp[0];
            wsp[1] = (wsp[1]<20)?20:wsp[1];
            wsp[1] = (wsp[1]>540)?540:wsp[1];
+           
+           
            
            if (wsp[1]==20){
                powrot();
@@ -81,6 +85,7 @@ public class Sterowanie extends JFrame{
           
      }
      
+
     
   public void powrot(){
             wsp[1]=540;
@@ -170,20 +175,15 @@ public class Sterowanie extends JFrame{
 
             public void keyTyped(KeyEvent e){
             }
+            
         }
     );
   }
     
-    public static void main(String[] args)
-    {
-       
-        //muzyka();
-        Sterowanie okno = new Sterowanie();
-        okno.repaint();
-        
-    }
+    
     
 
+    @Override
     public void paint(Graphics g)
     {
       
@@ -208,7 +208,21 @@ public class Sterowanie extends JFrame{
         
     }
     
+    
+    
+ public static void main(String[] args)
+    {
+       
+        //muzyka();
  
+        Sterowanie okno = new Sterowanie();
+        okno.repaint();
+        
+        
+        
+        
+        
+    }
 
 }
 

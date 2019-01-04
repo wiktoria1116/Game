@@ -18,6 +18,7 @@ public class Opcje extends JPanel {
     
     public Opcje(int width, int height){
         
+        Gra();
         
        
         
@@ -28,11 +29,6 @@ public class Opcje extends JPanel {
           public void mouseClicked(MouseEvent me){
               //Czy wybrano opcję Menu w pasku dolnym
               
-              int x = me.getX();
-              int y = me.getY();
-		
-             
-             
               //Czy wybrano z Menu pozycję Koniec gry
               if(me.getX()>(10) && me.getX()<(179)  && me.getY()>(92) &&  me.getY()<(121)){
                   if(Pomocnicza.pause){
@@ -44,6 +40,10 @@ public class Opcje extends JPanel {
         
                 }       
     
+    private void Gra(){
+    
+        Pomocnicza.czasStartu=System.currentTimeMillis();
+        Pomocnicza.pause=false;}
     
 
 }

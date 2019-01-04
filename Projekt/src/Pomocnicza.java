@@ -10,4 +10,6 @@
  */
 public class Pomocnicza {
     public static boolean pause=false;
+    public static long czasStartu;
+    public static long czasGry=Long.MAX_VALUE;
 }
