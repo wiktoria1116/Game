@@ -31,13 +31,15 @@ public class Sterowanie extends JFrame{
     private Timer       zegar;
     private Znaki       stop;
     private Menu        menu;
-   
   
-    
+  
+
 
   
  
     class Zadanie extends TimerTask{
+        
+        
 
         public void run()
         {
@@ -57,22 +59,25 @@ public class Sterowanie extends JFrame{
            wsp[1] = (wsp[1]<20)?20:wsp[1];
            wsp[1] = (wsp[1]>540)?540:wsp[1];
            
+           
+           
            if (wsp[1]==20){
                powrot();
            }
            
            if ((wsp[1]>=276 || wsp[1]<=510) && wsp[0]>=612){
-            blad();
+            
+            
         }
             if ((wsp[1]>=202 || wsp[1]<=278) && wsp[0]>=626){
-            blad();
+            
         }
             
              if (wsp[1]>=202  && wsp[0]>=675){
-            blad();
+           
         }
               if (wsp[1]>=202  && wsp[0]>=665){
-            blad();
+            
         }
             repaint();
             
@@ -80,16 +85,18 @@ public class Sterowanie extends JFrame{
           
      }
      
+
     
   public void powrot(){
             wsp[1]=540;
     }
-  public static void blad(){
+  
+  /**public static void blad(){
 
        JOptionPane.showMessageDialog(null, "Źle prowadzone auto!");
-       System.exit(0);
+       System.exit(2);
 
-    }
+    }**/
   
   
   
@@ -168,20 +175,15 @@ public class Sterowanie extends JFrame{
 
             public void keyTyped(KeyEvent e){
             }
+            
         }
     );
   }
     
-    public static void main(String[] args)
-    {
-       
-        muzyka();
-        Sterowanie okno = new Sterowanie();
-        okno.repaint();
-  
-    }
+    
     
 
+    @Override
     public void paint(Graphics g)
     {
       
@@ -192,8 +194,8 @@ public class Sterowanie extends JFrame{
         g2d.drawImage(samochodzik,wsp[0],wsp[1],null);
         g2d.setColor(Color.DARK_GRAY);
         g2d.setFont(new Font("Arial",Font.BOLD,20));
-        //g2d.drawString("Wsp x: " + wsp[0], 5, 55);
-       // g2d.drawString("Wsp y: "+ wsp[1], 5, 100);
+        g2d.drawString("Wsp x: " + wsp[0], 5, 55);
+        g2d.drawString("Wsp y: "+ wsp[1], 5, 100);
         
         if(wsp[1]<=305 && wsp[0]<=612 && wsp[0]>=425 ){
           stop.drawZnaki(g2d);
@@ -206,7 +208,21 @@ public class Sterowanie extends JFrame{
         
     }
     
+    
+    
+ public static void main(String[] args)
+    {
+       
+        //muzyka();
  
+        Sterowanie okno = new Sterowanie();
+        okno.repaint();
+        
+        
+        
+        
+        
+    }
 
 }
 
