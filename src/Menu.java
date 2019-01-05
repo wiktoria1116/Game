@@ -27,24 +27,23 @@ public class Menu {
     
     
 
-    Menu(int x, int y){
+    public Menu(int x, int y){
         this.x=x;
         this.y=y;
         
     
-     ZakonczGre = new ImageIcon("obrazki/nowagra.png").getImage();
-     NowaGra = new ImageIcon("obrazki/zakonczgre.png").getImage();
-     Poziom = new ImageIcon("obrazki/liczbapkt.png").getImage();
-     LiczbaPunktow = new ImageIcon("obrazki/poziom.png").getImage();
+        ZakonczGre = new ImageIcon("obrazki/zakonczgre.png").getImage();
+        NowaGra = new ImageIcon("obrazki/nowagra.png").getImage();
+        Poziom = new ImageIcon("obrazki/liczbapkt.png").getImage();
+        LiczbaPunktow = new ImageIcon("obrazki/poziom.png").getImage();
         
     }
     
     public void drawMenu(Graphics pulpit){
-     pulpit.drawImage(ZakonczGre, x, y, null);
-     pulpit.drawImage(NowaGra, x, y+70, null);
-     pulpit.drawImage(LiczbaPunktow, 620, y+470, null);
-     pulpit.drawImage(Poziom, x, y+470, null);
-     
+        pulpit.drawImage(NowaGra, x, y, null);
+        pulpit.drawImage(ZakonczGre, x, y+70, null);
+        pulpit.drawImage(LiczbaPunktow, 620, y+470, null);
+        pulpit.drawImage(Poziom, x, y+470, null); 
     }
     
 }

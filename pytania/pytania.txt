@@ -1,0 +1,18 @@
+Co oznacza znak na obrazku?
+obrazki/stop.png
+Stop
+Start
+Nic
+1
+Co oznacza znak na obrazku?
+obrazki/ustap.jpg
+Ustap pierwszenstwa
+Nakaz jazdy prosto
+Nakaz skretu w prawo
+1
+Co oznacza znak na obrazku?
+obrazki/pierwszenstwo.jpg
+Stop
+Droga z pierwszenstwem
+Twoja stara sra do gara
+2
