@@ -20,7 +20,6 @@ public class Menu {
     
     private Image ZakonczGre;
     private Image NowaGra;
-    private Image Poziom;
     private Image LiczbaPunktow;
     private int x;
     private int y;
@@ -34,16 +33,15 @@ public class Menu {
     
         ZakonczGre = new ImageIcon("obrazki/zakonczgre.png").getImage();
         NowaGra = new ImageIcon("obrazki/nowagra.png").getImage();
-        Poziom = new ImageIcon("obrazki/liczbapkt.png").getImage();
-        LiczbaPunktow = new ImageIcon("obrazki/poziom.png").getImage();
+        LiczbaPunktow = new ImageIcon("obrazki/liczbapkt.png").getImage();
+        
         
     }
     
     public void drawMenu(Graphics pulpit){
         pulpit.drawImage(NowaGra, x, y, null);
         pulpit.drawImage(ZakonczGre, x, y+70, null);
-        pulpit.drawImage(LiczbaPunktow, 620, y+470, null);
-        pulpit.drawImage(Poziom, x, y+470, null); 
+        pulpit.drawImage(LiczbaPunktow, x, y+470, null); 
     }
     
 }

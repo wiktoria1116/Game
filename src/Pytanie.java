@@ -17,11 +17,11 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author adule
+ * @author wikto
  */
 public class Pytanie {
     
-    private static final int LICZBA_PYTAN = 3;
+    private static final int LICZBA_PYTAN = 13;
     private static final int LINIE_NA_PYTANIE = 6;
     private static final String PLIK_ZRODLOWY = "pytania/pytania.txt";
     private int nr_pytania;

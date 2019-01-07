@@ -1,18 +1,78 @@
-Co oznacza znak na obrazku?
+Co oznacza przedstawiony znak?
 obrazki/stop.png
 Stop
-Start
-Nic
+Zakaz wjazdu
+Zakaz jazdy rowerem
 1
-Co oznacza znak na obrazku?
-obrazki/ustap.jpg
+Co oznacza przedstawiony znak?
+obrazki/ustap.png
 Ustap pierwszenstwa
 Nakaz jazdy prosto
 Nakaz skretu w prawo
 1
-Co oznacza znak na obrazku?
-obrazki/pierwszenstwo.jpg
+Co oznacza przedstawiony znak?
+obrazki/pierwszenstwo.png
 Stop
 Droga z pierwszenstwem
-Twoja stara sra do gara
+Zakaz wjazdu
 2
+Co oznacza przedstawiony znak?
+obrazki/DrogaBezPrzejazdu.png
+Nakaz jazdy prosto
+Stop
+Droga bez przejazdu
+3
+Co oznacza przedstawiony znak?
+obrazki/DrogaEkspresowa.png
+Nakaz jazdy autem
+Zakaz jazdy rowerem
+Droga Ekspresowa
+3
+Co oznacza przedstawiony znak?
+obrazki/DrogaJednokierunkowa.png
+Droga jednokierunkowa
+Zakaz jazdy prosto
+Droga z pierwszenstwem
+1
+Co oznacza przedstawiony znak?
+obrazki/dzieci.png
+Przejscie dla pieszych
+Dzieci w okolicy
+Droga dla pieszych
+2
+Co oznacza przedstawiony znak?
+obrazki/NakazJazdyProsto.png
+Droga z pierwszenstwem
+Droga jednokierunkowa
+Najaz jazdy prosto
+3
+Co oznacza przedstawiony znak?
+obrazki/PrzejscieDlaPieszych.png
+Koniec drogi dla pieszych
+Przejscie dla pieszych
+Dzieci w okolicy
+2
+Co oznacza przedstawiony znak?
+obrazki/ruchOkrezny.png
+Ruch okrezny
+Zawroc
+Nakaz jazdy w prawo
+1
+Co oznacza przedstawiony znak?
+obrazki/SkrzyzowanieDrog.png
+Ustap pierwszenstwa
+Zakaz jazdy
+Skrzyzowanie drog
+3
+Co oznacza przedstawiony znak?
+obrazki/ZakazWjazdu.png
+Zakaz zatrzymywania sie
+Zakaz wjazdu
+Skrzyzowanie drog
+2
+Co oznacza przedstawiony znak?
+obrazki/ZakazZatrzymywania.png
+Zakaz zatrzymywania sie
+Zakaz wjazdu
+Skrzyzowanie drog
+1

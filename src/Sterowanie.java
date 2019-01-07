@@ -31,18 +31,23 @@ public class Sterowanie extends JFrame{
     private int         wsp[];
     private Timer       zegar;
     private Menu        menu;
-    private Graphics2D   g2d;
+    private Graphics2D  g2d;
     private Pytanie     quest; 
     private boolean     wczytanoPytanie; 
     private boolean     wyswietlPytanie;
     private boolean     moznaWyswietlicPytanie;
     private boolean     pytanieisOn;
     private int         wybranaOdp;
-  
-
-
-  
- 
+    private int         punkty;
+    private boolean     wyjechalPozadroge;
+    private boolean     bylNaDrodze;
+    private boolean     wyswietlnapisKoniecGry;
+    private boolean     samochodzikWidzialny;
+    private boolean     OdpPop;
+    private boolean     wyswietlKomunikat;
+    
+    
+    
     class Zadanie extends TimerTask{
         
         
@@ -72,16 +77,20 @@ public class Sterowanie extends JFrame{
            }
            
            if ((wsp[1]>=276 || wsp[1]<=510) && wsp[0]>=612){
-                        
+               wyjechalPozadroge = true;
            }
-           if ((wsp[1]>=202 || wsp[1]<=278) && wsp[0]>=626){
-            
+           else if ((wsp[1]>=202 || wsp[1]<=278) && wsp[0]>=626){
+               wyjechalPozadroge = true;
            }
-           if (wsp[1]>=202  && wsp[0]>=675){
-           
+           else if (wsp[1]>=202  && wsp[0]>=675){
+               wyjechalPozadroge = true;
            }
-           if (wsp[1]>=202  && wsp[0]>=665){
-            
+           else if (wsp[1]>=202  && wsp[0]>=665){
+               wyjechalPozadroge = true;
+           }
+           else{
+               wyjechalPozadroge = false;
+               bylNaDrodze = true;
            }
            if(wsp[1]<=305 && wsp[0]<=612 && wsp[0]>=425 && moznaWyswietlicPytanie == true){
                wyswietlPytanie = true;
@@ -100,6 +109,9 @@ public class Sterowanie extends JFrame{
     
   public void powrot(){
             wsp[1]=540;
+            if(pytanieisOn){
+                punkty--;
+            }
             wczytanoPytanie = false;
             moznaWyswietlicPytanie = true;
     }
@@ -129,9 +141,7 @@ public class Sterowanie extends JFrame{
  
   
   
-    Sterowanie(){
-        
-        
+    Sterowanie(){        
         super("Good road");
         setBounds(50,60,800,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,12 +156,18 @@ public class Sterowanie extends JFrame{
         menu            = new Menu (21, 40);
         wczytanoPytanie = false;
         wyswietlPytanie = false;
-        moznaWyswietlicPytanie = true;
         pytanieisOn     = false;
         wybranaOdp      = 0;
+        punkty          = 0;
+        wsp[0]          = 520;
+        wsp[1]          = 540;
+        bylNaDrodze     = true;
+        wyjechalPozadroge = false;
+        moznaWyswietlicPytanie = true;
+        wyswietlnapisKoniecGry = false;
+        samochodzikWidzialny = true;
+        wyswietlKomunikat = false;
         
-        wsp[0] = 368;
-        wsp[1] = 540;
 
         zegar = new Timer();
         zegar.scheduleAtFixedRate(new Zadanie(),0,10);
@@ -160,10 +176,10 @@ public class Sterowanie extends JFrame{
 
             public void keyPressed(KeyEvent e){
                 switch(e.getKeyCode()){
-                    case KeyEvent.VK_UP:      klawisze[0] = true; break;
-                    case KeyEvent.VK_DOWN:    klawisze[1] = true; break;
-                    case KeyEvent.VK_LEFT:    klawisze[2] = true; break;
-                    case KeyEvent.VK_RIGHT:   klawisze[3] = true; break;
+                    case KeyEvent.VK_UP:      klawisze[0] = true; wyswietlKomunikat = false; break;
+                    case KeyEvent.VK_DOWN:    klawisze[1] = true; wyswietlKomunikat = false; break;
+                    case KeyEvent.VK_LEFT:    klawisze[2] = true; wyswietlKomunikat = false; break;
+                    case KeyEvent.VK_RIGHT:   klawisze[3] = true; wyswietlKomunikat = false; break;
                 }
             }
 
@@ -182,7 +198,7 @@ public class Sterowanie extends JFrame{
             
         }
     );
-          this.addMouseListener(new MouseAdapter(){
+        this.addMouseListener(new MouseAdapter(){
           @Override
             public void mouseClicked(MouseEvent me){    
               if(me.getX() > 30 && me.getX()< 180 && me.getY() > 66 && me.getY() < 89){
@@ -194,18 +210,20 @@ public class Sterowanie extends JFrame{
               }
               if(me.getX() > 58 && me.getX() < 224 && me.getY() > 436 && me.getY() < 508 && pytanieisOn == true){
                   wybranaOdp = 1;
-                  sprawdzOdp();
+                  OdpPop = sprawdzOdp();
+                  ZakonczGre();
               }
               if(me.getX() > 321 && me.getX() < 500 && me.getY() > 477 && me.getY() < 543 && pytanieisOn == true){
                   wybranaOdp = 2;
-                  sprawdzOdp();
+                  OdpPop = sprawdzOdp();
+                  ZakonczGre();
               }
               if(me.getX() > 555 && me.getX() < 718 && me.getY() > 419 && me.getY() < 481 && pytanieisOn == true){
                   wybranaOdp = 3;
-                  sprawdzOdp();
+                  OdpPop = sprawdzOdp();
+                  ZakonczGre();
+                  
               }
-              System.out.println("Wsp X: " + me.getX());
-              System.out.println("Wsp Y: " + me.getY());
           }
         }
     );
@@ -226,24 +244,61 @@ public class Sterowanie extends JFrame{
         }
         g2d = (Graphics2D)bstrategy.getDrawGraphics(); 
         g2d.drawImage(tlo1, 0, 0, null);
-        g2d.drawImage(samochodzik,wsp[0],wsp[1],null);
         g2d.setColor(Color.DARK_GRAY);
         g2d.setFont(new Font("Arial",Font.BOLD,20));
-        g2d.drawString("Wsp x: " + wsp[0], 5, 55);
-        g2d.drawString("Wsp y: " + wsp[1], 5, 100);
+        //g2d.drawString("Wsp x: " + wsp[0], 5, 55);
+        //g2d.drawString("Wsp y: " + wsp[1], 5, 100);
+        g2d.setColor(Color.RED);
+        g2d.setFont(new Font("Arial",Font.BOLD,30));
+        g2d.drawString(Integer.toString(punkty), 172, 550);
         
         if(wyswietlPytanie){
             pokazPytanie();
         }
 
         if(menu != null){
-           menu.drawMenu(g2d);
+            menu.drawMenu(g2d);
         }
-        
+        if(wyjechalPozadroge){
+            pozaDroga();
+        }
+        if(wyswietlnapisKoniecGry){
+            g2d.setColor(Color.RED);
+            g2d.setFont(new Font("Arial",Font.BOLD,50));
+            g2d.drawString("Koniec gry!" , 300, 250);
+            g2d.drawString("Twoj wynik: " + punkty, 300, 330);
+        }
+        if(samochodzikWidzialny){
+            g2d.drawImage(samochodzik,wsp[0],wsp[1],null);
+        }
+        if(wyswietlKomunikat){
+            if(OdpPop){
+            g2d.setColor(Color.BLUE);
+            g2d.setFont(new Font("Arial",Font.BOLD,50));
+            g2d.drawString("Dobra odpowiedz!" , 190, 250);
+            }
+            else{
+            g2d.setColor(Color.RED);
+            g2d.setFont(new Font("Arial",Font.BOLD,50));
+            g2d.drawString("Zla odpowiedz!" , 210, 250);
+            }
+            
+        }
         g2d.dispose();
         bstrategy.show();
         
     }
+    
+    public void pozaDroga(){
+        g2d.setColor(Color.RED);
+        g2d.setFont(new Font("Arial",Font.BOLD,50));
+        g2d.drawString("Wyjechales poza droge!", 110, 300);
+        if(bylNaDrodze){
+            punkty--;
+            bylNaDrodze = false;
+        }
+    }
+   
     public void pokazPytanie(){
         if (wczytanoPytanie == false){
             quest = new Pytanie();
@@ -254,22 +309,39 @@ public class Sterowanie extends JFrame{
         pytanieisOn = true;
         }
     }
-    public void sprawdzOdp()
-    {
+    public boolean sprawdzOdp() {
         if (wybranaOdp == quest.getPoprawna())
         {
-            System.out.println("Podales poprawna odpowiedz! \n");
             moznaWyswietlicPytanie = false;
+            punkty++;
+            wyswietlKomunikat = true;
+            return true;
         }
-        else
+        else 
         {
-            System.out.println("Podales niepoprawna odpowiedz! \n");
             moznaWyswietlicPytanie = false;
+            punkty--;
+            wyswietlKomunikat = true;
+            return false;
         }
+   
     }
     public void NowaGra(){
-        System.out.println("Nowa Gra!\n");
+        punkty = 0;
+        wsp[0]          = 520;
+        wsp[1]          = 540;
+        wyswietlnapisKoniecGry = false;
+        samochodzikWidzialny   = true;
     }
+    
+    public void ZakonczGre(){
+        if (punkty >= 10){
+        wyswietlnapisKoniecGry = true;
+        samochodzikWidzialny   = false;
+        }
+        
+    }
+    
     
  public static void main(String[] args)
     {

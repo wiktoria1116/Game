@@ -6,7 +6,7 @@
 
 /**
  *
- * @author adule
+ * @author wikto
  */
 
 import java.awt.Graphics2D;
