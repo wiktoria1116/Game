@@ -6,47 +6,45 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 
-
-
-
+/**
+ *
+ * @author Wiktoria Smigecka
+ */
 public class Sterowanie extends JFrame{
     
     private Image       tlo1;
     private Image       samochodzik;
-    private boolean     klawisze[];
-    private int         wsp[];
+    private boolean     klawisze[]; //zmiena określająca rodzaj używanego klawisza
+    private int         wsp[]; //zmiena okreslająca współrzędne samochodzika
     private Timer       zegar;
     private Menu        menu;
     private Graphics2D  g2d;
     private Pytanie     quest; 
-    private boolean     wczytanoPytanie; 
-    private boolean     wyswietlPytanie;
-    private boolean     moznaWyswietlicPytanie;
+    private boolean     wczytanoPytanie; //Zmienna stanu określająca czy wczytano pytanie
+    private boolean     wyswietlPytanie; //Zmienna stanu określająca czy pytanie ma zostać wyświetlone w danym momencie
+    private boolean     moznaWyswietlicPytanie; 
     private boolean     pytanieisOn;
     private int         wybranaOdp;
-    private int         punkty;
-    private boolean     wyjechalPozadroge;
-    private boolean     bylNaDrodze;
-    private boolean     wyswietlnapisKoniecGry;
-    private boolean     samochodzikWidzialny;
-    private boolean     OdpPop;
-    private boolean     wyswietlKomunikat;
+    private int         punkty; // Zmienna pomocnicza określająca sume punktów
+    private boolean     wyjechalPozadroge; // Zmienna stanu określająca czy samochodzik wjechał na drogę
+    private boolean     bylNaDrodze; //Zmienna stanu określająca samochodzik który poruszał się po  zdrodze
+    private boolean     wyswietlnapisKoniecGry; //Zmienna stanu określająca moment wyświetlenia napisów końcowych gry
+    private boolean     samochodzikWidzialny; //Zmienna stanu 
+    private boolean     OdpPop; //Zmienna stanu określeślająca odpowiedź na pytanie
+    private boolean     wyswietlKomunikat; //Zmienna stanu określająca moment wyświetlania komunikatu po  udzieleniu odpowiedzi na pytanie 
     
-    
+    /**
+     * Klasa określająca poruszanie się samochodzikiem poprzez klawisze klawiatury
+     */
     
     class Zadanie extends TimerTask{
         
@@ -70,7 +68,9 @@ public class Sterowanie extends JFrame{
            wsp[1] = (wsp[1]<20)?20:wsp[1];
            wsp[1] = (wsp[1]>540)?540:wsp[1];
            
-           
+           /**
+            *Funkcje określające zdarzenie, gdy samochodzik wyjedzie poza drogę
+            */
            
            if (wsp[1]==20){
                powrot();
@@ -105,9 +105,10 @@ public class Sterowanie extends JFrame{
           
      }
      
-
-    
-  public void powrot(){
+    /**
+     * Funkcja pozwalajaca na powrot do miejsca startu samochodzika, co sprawia wrażenie ciaglosci gry
+     */
+    public void powrot(){
             wsp[1]=540;
             if(pytanieisOn){
                 punkty--;
@@ -116,13 +117,20 @@ public class Sterowanie extends JFrame{
             moznaWyswietlicPytanie = true;
     }
     
-  public static void muzyka(){
+    /**
+     * Odtworzenie dźwięku
+     */
+    public static void muzyka(){
       
             playSound(new File("dzwieki/odglos.wav"));
         
     }
 
-  public static synchronized void playSound(final File f) {
+    /**
+     * Funkcja odtwarzania dźwięku z pliku
+     * @param f
+     */
+    public static synchronized void playSound(final File f) {
         new Thread(new Runnable() {
           public void run() {
             try {
@@ -137,10 +145,10 @@ public class Sterowanie extends JFrame{
         }).start();
     }
   
-  
- 
-  
-  
+  /**
+   * Konstruktor - wyświetlenie zasobów gry,
+   */
+
     Sterowanie(){        
         super("Good road");
         setBounds(50,60,800,600);
@@ -157,11 +165,11 @@ public class Sterowanie extends JFrame{
         wczytanoPytanie = false;
         wyswietlPytanie = false;
         pytanieisOn     = false;
-        wybranaOdp      = 0;
-        punkty          = 0;
-        wsp[0]          = 520;
-        wsp[1]          = 540;
-        bylNaDrodze     = true;
+        wybranaOdp      = 0;        //Zmienna pomocnicza określająca wybór odpowiedzi
+        punkty          = 0;        //Zmienna pomocnicza określająca ilość punktów gracza
+        wsp[0]          = 520;      //Początowa współrzędna x samochodzika
+        wsp[1]          = 540;      //Początowa współrzędna y samochodzika
+        bylNaDrodze     = true;     
         wyjechalPozadroge = false;
         moznaWyswietlicPytanie = true;
         wyswietlnapisKoniecGry = false;
@@ -198,6 +206,11 @@ public class Sterowanie extends JFrame{
             
         }
     );
+        
+        /**
+         * Funkcja umożliwiająca posługiwanie się myszką w czasie gry
+         */
+        
         this.addMouseListener(new MouseAdapter(){
           @Override
             public void mouseClicked(MouseEvent me){    
@@ -230,7 +243,10 @@ public class Sterowanie extends JFrame{
   }
     
     
-    
+    /**
+     * Funkcja rysująca zasoby gry
+     * @param g 
+     */
 
     @Override
     public void paint(Graphics g) 
@@ -246,8 +262,6 @@ public class Sterowanie extends JFrame{
         g2d.drawImage(tlo1, 0, 0, null);
         g2d.setColor(Color.DARK_GRAY);
         g2d.setFont(new Font("Arial",Font.BOLD,20));
-        //g2d.drawString("Wsp x: " + wsp[0], 5, 55);
-        //g2d.drawString("Wsp y: " + wsp[1], 5, 100);
         g2d.setColor(Color.RED);
         g2d.setFont(new Font("Arial",Font.BOLD,30));
         g2d.drawString(Integer.toString(punkty), 172, 550);
@@ -289,6 +303,9 @@ public class Sterowanie extends JFrame{
         
     }
     
+    /**
+     * Funkcja sprawdzajaca czy samochód wyjechał poza drogę, jeśli tak odejmowany jest jeden punkt
+     */
     public void pozaDroga(){
         g2d.setColor(Color.RED);
         g2d.setFont(new Font("Arial",Font.BOLD,50));
@@ -299,6 +316,9 @@ public class Sterowanie extends JFrame{
         }
     }
    
+    /**
+     * Funkcja wczytująca i wyświetlająca pytanie
+     */
     public void pokazPytanie(){
         if (wczytanoPytanie == false){
             quest = new Pytanie();
@@ -309,6 +329,11 @@ public class Sterowanie extends JFrame{
         pytanieisOn = true;
         }
     }
+
+    /**
+     * Sprawdzenie czy odpowiedź jest poprawna, jeśli tak wyświeta się komunikat "Dobra odpowiedź", a jeśli nie to wyświetla się tekt "Zła odpowiedź"
+     * @return czy odpowiedź jest poprawna czy nie
+     */
     public boolean sprawdzOdp() {
         if (wybranaOdp == quest.getPoprawna())
         {
@@ -326,6 +351,10 @@ public class Sterowanie extends JFrame{
         }
    
     }
+
+    /**
+     * Funkcja resetująca gre, możliwe jest rozpoczęcie gry na nowo
+     */
     public void NowaGra(){
         punkty = 0;
         wsp[0]          = 520;
@@ -334,6 +363,9 @@ public class Sterowanie extends JFrame{
         samochodzikWidzialny   = true;
     }
     
+    /**
+     * Funkcja kończąca gre po wybraniu odpowiedniej opcji, skutkutkiem jest zamknięcie okna gry
+     */
     public void ZakonczGre(){
         if (punkty >= 10){
         wyswietlnapisKoniecGry = true;
@@ -342,11 +374,14 @@ public class Sterowanie extends JFrame{
         
     }
     
-    
- public static void main(String[] args)
+    /**
+     * Metoda uruchamia grę, pobieraa obiekty na podstawie ścieżki dostepu podanej jako String
+     * @param args 
+     */
+    public static void main(String[] args)
     {
        
-        //muzyka();
+        muzyka();
         Sterowanie okno = new Sterowanie();
         okno.repaint();
         

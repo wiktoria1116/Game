@@ -17,22 +17,25 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author wikto
+ * @author Wiktoria Smigecka
  */
 public class Pytanie {
     
-    private static final int LICZBA_PYTAN = 13;
-    private static final int LINIE_NA_PYTANIE = 6;
-    private static final String PLIK_ZRODLOWY = "pytania/pytania.txt";
-    private int nr_pytania;
-    private String pytanie;
-    private String odpA;
-    private String odpB;
-    private String odpC;
-    private int poprawna;
-    private String znak_source;
+    private static final int LICZBA_PYTAN = 13; // Zmienna określająca ilość pytań
+    private static final int LINIE_NA_PYTANIE = 6; // ZMienna określająca ilość linijek jaką zawiera każde wczytywane pytane wraz z odpowiedziami 
+    private static final String PLIK_ZRODLOWY = "pytania/pytania.txt"; // Zmienna typu String umożliwiająca wczytywanie pytania
+    private int nr_pytania; // Zmiena określająca nr pytania
+    private String pytanie; //Zmienna pomocnicza 
+    private String odpA; //Zmienna określająca odpowiedź A
+    private String odpB; //Zmienna określająca odpowiedź B
+    private String odpC; //Zmienna określająca odpowiedź C
+    private int poprawna; //Zmienna pomocnicza określająca czy odpowiedź jest poprawna
+    private String znak_source; 
     private Znak znak;
     
+    /**
+     *Konstruktor pobierający pytanie z pliku tekstowego
+     */
     public Pytanie(){
         Random generator = new Random();
         nr_pytania = generator.nextInt(LICZBA_PYTAN) + 1;
@@ -62,10 +65,10 @@ public class Pytanie {
             input.nextLine();
         }
     }
-
-    public void wypiszPytanie(Graphics2D plotno){
-        System.out.println(pytanie + "\n" + odpA + "\n" + odpB + "\n" + odpC + "\n" + poprawna + "\n" + znak_source + "\n");
-    }
+    /**
+     *
+     * @param plotno
+     */
     public void wyswietlPytanie(Graphics2D plotno){
         znak.drawZnak(plotno);
         plotno.setColor(Color.DARK_GRAY);
@@ -75,6 +78,11 @@ public class Pytanie {
         plotno.drawString(odpB, 298, 517);
         plotno.drawString(odpC, 531, 457);
     }
+
+    /**
+     *
+     * @return udzielono poprawną lub niepoprawną odpowiedź
+     */
     public int getPoprawna(){
         return poprawna;
     }

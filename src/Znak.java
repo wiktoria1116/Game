@@ -4,22 +4,20 @@
  * and open the template in the editor.
  */
 
-/**
- *
- * @author wikto
- */
 
 import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
+/**
+ * Klasa 
+ * @author Wiktoria Smigecka
+ */
 public class Znak {
-    private Image obrazek;
-    private Image chmura;
-    private int x;
-    private int y;
+    private Image obrazek; //obiekt obrazek-droga i trawa
+    private Image chmura; // obiekt chmura, na której wyświetlane są pytania
+    private int x; // zmienna pomocnicza określająca wartośc współrzędnej x
+    private int y; // zmienna pomocnicza określająca wartośc współrzędnej y
     Znak(String znak_source) { 
         x=560;
         y=60;
@@ -27,6 +25,10 @@ public class Znak {
        chmura  = new ImageIcon("obrazki/chmura.png").getImage();
     }
    
+    /**
+     *Funkcja wyświetlająca obrazki- drogę i znak, który zmienia się losowo. 
+     * @param plotno
+     */
     public void drawZnak(Graphics2D plotno){
         plotno.drawImage(obrazek, x, y, null);
         plotno.drawImage(chmura, 0, 314, null);

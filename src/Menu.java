@@ -4,28 +4,27 @@
  * and open the template in the editor.
  */
 
-/**
- *
- * @author wikto
- */
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
+/**
+ *
+ * @author Wiktoria Smigecka
+ */
 public class Menu {
     
-    private Image ZakonczGre;
-    private Image NowaGra;
-    private Image LiczbaPunktow;
-    private int x;
-    private int y;
+    private Image ZakonczGre;  // obiekt należący do menu, określa przycisk zakonczenia gry
+    private Image NowaGra;      // obiekt należący do menu, określa przycisk NOwej gry
+    private Image LiczbaPunktow; // Obiekt należący do menu, określający ilość punktów gracza
+    private int x;              // zmienna pomocnicza określająca wartośc współrzędnej x
+    private int y;              // zmienna pomocnicza określająca wartośc współrzędnej y
     
-    
-
+    /**
+     * Konstruktor 
+     * @param x
+     * @param y
+     */
     public Menu(int x, int y){
         this.x=x;
         this.y=y;
@@ -38,6 +37,10 @@ public class Menu {
         
     }
     
+    /**
+     *
+     * @param pulpit
+     */
     public void drawMenu(Graphics pulpit){
         pulpit.drawImage(NowaGra, x, y, null);
         pulpit.drawImage(ZakonczGre, x, y+70, null);
